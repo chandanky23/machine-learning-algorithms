@@ -2,6 +2,8 @@
 # Here the probability of each feature is calculated for given y.
 # It uses the Gaussian normal distribution.
 
+# @Explanation ref: https://youtu.be/Q8l0Vip5YUw
+
 import numpy as np
 
 class NaiveBayes:
