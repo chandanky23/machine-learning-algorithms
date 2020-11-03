@@ -2,7 +2,7 @@
 # Here the probability of each feature is calculated for given y.
 # It uses the Gaussian normal distribution.
 
-import numpy from np
+import numpy as np
 
 class NaiveBayes:
 
@@ -21,12 +21,12 @@ class NaiveBayes:
     for c in self._classes:
       X_c = X[c==y]
       self._mean[c,:] = X_c.mean(axis=0)
-      self._var[c,:] = X_c.var(axis=0)
+      self._variance[c,:] = X_c.var(axis=0)
       self._priors[c] = X_c.shape[0] / float(n_samples)
 
   def predict(self, X):
     y_predict = [self._predict(x) for x in X]
-    return y_pred
+    return y_predict
   
   def _predict(self, x):
     posteriors = []
@@ -40,7 +40,7 @@ class NaiveBayes:
 
   def probability_density_function(self, class_index, x):
     mean = self._mean[class_index]
-    var = self._var[class_index]
+    var = self._variance[class_index]
 
     numerator = np.exp(- (x-mean)**2 / (2 * var))
     denominator = np.sqrt(2 * np.pi * var)
